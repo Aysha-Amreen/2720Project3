@@ -69,9 +69,10 @@ public class BinaryTree<T extends Comparable<T>> {
             return new NodeType<T>(item, parent);
         }
 
+        // item has less value than node
         if (item.compareTo(node.getItem()) < 0) {
             node.setLeftChild(insert(node, item, node.getLeftChild()));
-        } else if (item.compareTo(node.getItem()) > 0) {
+        } else if (item.compareTo(node.getItem()) > 0) {   // item has more value than node
             node.setRightChild(insert(node, item, node.getRightChild()));
         } else if (item.compareTo(node.getItem()) == 0) {
             System.out.println("The item already exists in the tree.");
@@ -160,11 +161,13 @@ public class BinaryTree<T extends Comparable<T>> {
 
     private void printSingleParents(NodeType<T> node) {
         if (node.getLeftChild() == null) {
+            // checking right subtree
             if (node.getRightChild() != null) {
                 System.out.print(node.getItem() + "  ");
                 printSingleParents(node.getRightChild());
             }
         } else {
+            // checking left subtree
             printSingleParents(node.getLeftChild());
             if (node.getRightChild() == null) {
                 System.out.print(node.getItem() + "  ");
@@ -202,6 +205,8 @@ public class BinaryTree<T extends Comparable<T>> {
             if (foundNode != root && foundNode.getParent().getParent() != null) {
                 NodeType<T> grandparent = foundNode.getParent().getParent();
 
+                // finds granparent than finds children of grandparent's
+                // other child that is not nodes parent
                 if (foundNode.getParent() == grandparent.getRightChild()) {
                     cousin1 = grandparent.getLeftChild().getLeftChild();
                     cousin2 = grandparent.getLeftChild().getRightChild();

@@ -1,9 +1,3 @@
-
-package tree;
-
-import tree.BinarySearchTree;
-import tree.Node;
-import tree.AVLTree;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -11,10 +5,10 @@ import java.lang.Integer;
 import java.lang.Double;
 
 /**
- * Driver class for Trees.
+ * Driver class for Binary Trees.
  */
 
-public class TreeDriver {
+public class BinaryTreeDriver {
     private static boolean i = false;
     private static boolean d = false;
     private static boolean s = false;
@@ -22,7 +16,7 @@ public class TreeDriver {
     public static void main(String[] args) {
 
         Scanner read = new Scanner(System.in);
-        BinarySearchTree bst = null;
+        BinaryTree bst = null;
 
         // checking for file i/o exception
         try {
@@ -38,20 +32,20 @@ public class TreeDriver {
             if (input.length() == 1) {
                 char option = input.charAt(0);
                 if (option == 'i') {
-                    bst = new BinarySearchTree<Integer>();
+                    bst = new BinaryTree<Integer>();
                     // creating Binary Search Tree from input file
                     while (scan.hasNext()) {
                         bst.insert(Integer.parseInt(scan.next()));
                     }
                     i = true;
                 } else if (option == 'd') {
-                    bst = new BinarySearchTree<Double>();
+                    bst = new BinaryTree<Double>();
                     while (scan.hasNext()) {
                         bst.insert(Double.parseDouble(scan.next()));
                     }
                     d = true;
                 } else if (option == 's') {
-                    bst = new BinarySearchTree<String>();
+                    bst = new BinaryTree<String>();
                     while (scan.hasNext()) {
                         bst.insert((scan.next()));
                     }

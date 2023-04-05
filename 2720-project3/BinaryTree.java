@@ -1,19 +1,15 @@
-package tree;
-
-import tree.Node;
-
 /**
- * Binary Search Tree.
+ * Binary Search Tree class.
  */
 
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinaryTree<T extends Comparable<T>> {
 
-    Node<T> root;
+    NodeType<T> root;
     boolean found = false;
     int leafCount = 0;
-    Node<T> foundNode = null;
+    NodeType<T> foundNode = null;
 
-    public BinarySearchTree() {
+    public BinaryTree() {
         root = null;
     }
 
@@ -30,21 +26,21 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return getMin(root);
     }
 
-    T getMin(Node<T> node) {
+    T getMin(NodeType<T> node) {
         if (node.getLeftChild() != null) {
             return getMin(node.getLeftChild());
         }
         return node.getItem();
     }
 
-    public Node<T> getMax() {
+    public NodeType<T> getMax() {
         if(isEmpty()) {
             return null;
         }
         return getMax(root);
     }
 
-    Node<T> getMax(Node<T> node) {
+    NodeType<T> getMax(NodeType<T> node) {
         if (node.getRightChild() != null) {
             return getMax(node.getRightChild());
         }
@@ -56,7 +52,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println("");
     }
 
-    void traverseInOrder(Node<T> node) {
+    void traverseInOrder(NodeType<T> node) {
         if(node != null) {
             traverseInOrder(node.getLeftChild());
             System.out.print(node.getItem() + "  ");
@@ -68,9 +64,9 @@ public class BinarySearchTree<T extends Comparable<T>> {
         root = insert(null, item, root);
     }
 
-    private Node<T> insert(Node<T> parent, T item, Node<T> node) {
+    private NodeType<T> insert(NodeType<T> parent, T item, NodeType<T> node) {
         if (node == null) {
-            return new Node<T>(item, parent);
+            return new NodeType<T>(item, parent);
         }
 
         if (item.compareTo(node.getItem()) < 0) {
@@ -89,7 +85,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
     }
 
-    private void delete(Node<T> node) {
+    private void delete(NodeType<T> node) {
         // Leaf Node
         if (node.getLeftChild() == null && node.getRightChild() == null) {
             if (node == root) {
@@ -142,7 +138,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return found;
     }
 
-    private void search(Node<T> node, T item) {
+    private void search(NodeType<T> node, T item) {
         if (node != null) {
             if (item.compareTo(node.getItem()) < 0) {
                 search(node.getLeftChild(), item);
@@ -162,7 +158,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println("");
     }
 
-    private void printSingleParents(Node<T> node) {
+    private void printSingleParents(NodeType<T> node) {
         if (node.getLeftChild() == null) {
             if (node.getRightChild() != null) {
                 System.out.print(node.getItem() + "  ");
@@ -184,7 +180,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         System.out.println("The number of leaf nodes are " + leafCount);
     }
 
-    private void countLeafNodes(Node<T> node) {
+    private void countLeafNodes(NodeType<T> node) {
         if (node.getLeftChild() == null && node.getRightChild() == null) {
             leafCount++;
         } else {
@@ -198,13 +194,13 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     public void getCousins(T item) {
-        Node<T> cousin1 = null;
-        Node<T> cousin2 = null;
+        NodeType<T> cousin1 = null;
+        NodeType<T> cousin2 = null;
 
         if (search(item)) {
             System.out.print("cousins of " + item + ": ");
             if (foundNode != root && foundNode.getParent().getParent() != null) {
-                Node<T> grandparent = foundNode.getParent().getParent();
+                NodeType<T> grandparent = foundNode.getParent().getParent();
 
                 if (foundNode.getParent() == grandparent.getRightChild()) {
                     cousin1 = grandparent.getLeftChild().getLeftChild();

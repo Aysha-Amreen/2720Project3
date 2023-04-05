@@ -1,19 +1,17 @@
-package tree;
-
 /**
- * Node.
+ * Node class.
  */
 
-public class Node<T extends Comparable<T>> {
+public class NodeType<T extends Comparable<T>> {
     private T item;
-    private Node<T> leftChild;
-    private Node<T> rightChild;
-    private Node<T> parent;
+    private NodeType<T> leftChild;
+    private NodeType<T> rightChild;
+    private NodeType<T> parent;
 
     private int height = 1;
 
     /** Creates a node with the given element. */
-    public Node(T t, Node<T> node) {
+    public NodeType(T t, NodeType<T> node) {
         item = t;
         parent = node;
     }
@@ -30,17 +28,17 @@ public class Node<T extends Comparable<T>> {
     }
 
     /** Returns the left child node (or null if no such node). */
-    public Node<T> getLeftChild() {
+    public NodeType<T> getLeftChild() {
         return leftChild;
     }
 
     /** Returns the right child node (or null if no such node). */
-    public Node<T> getRightChild() {
+    public NodeType<T> getRightChild() {
         return rightChild;
     }
 
     /** Returns the parent node (or null if no such node). */
-    public Node<T> getParent() {
+    public NodeType<T> getParent() {
         return parent;
     }
 
@@ -57,17 +55,17 @@ public class Node<T extends Comparable<T>> {
     }
 
     /** Set the left child node. */
-    public void setLeftChild(Node<T> node) {
+    public void setLeftChild(NodeType<T> node) {
         leftChild = node;
     }
 
     /** Set the right child node. */
-    public void setRightChild(Node<T> node) {
+    public void setRightChild(NodeType<T> node) {
         rightChild = node;
     }
 
     /** Set the parent node. */
-    public void setParent(Node<T> node) {
+    public void setParent(NodeType<T> node) {
         parent = node;
     }
 }
